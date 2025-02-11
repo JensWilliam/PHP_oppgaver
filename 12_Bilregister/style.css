@@ -1,0 +1,392 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+:root {
+    --fontsize-overskrift: 3rem;
+    --fontsize-medium: 2rem;
+    --fontsize-tekst: 1rem;
+
+    --color-font-light: #dfe0df;
+    --color-font-dark: #37393b;
+
+
+    --color-body: #dfe0df;
+    --color-header: #37393b;
+    --color-accent: #ff8d3e;
+    --color-form: #37393b;
+    --color-edit: #2fc363;
+}
+
+::selection {
+    background-color: var(--color-accent);
+    color: var(--color-font-light);
+}
+
+body {
+    background-color: var(--color-body);
+}
+
+
+header{
+    display: flex;
+    justify-content: space-between;
+    /*align-items: center;*/
+    width: 100%;
+
+    background-color: var(--color-header);
+}
+
+
+
+.minlogo{
+    display: flex;
+    align-items: center;
+    padding: 0 3%;
+    width: 200px;
+}
+.minlogo img{
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+header nav ul{
+    display: flex;
+    margin-right: 40px;
+    list-style: none;
+    height: 100%;
+}
+
+header nav ul li a{
+    display: flex;
+    padding: 20px 30px;
+    text-decoration: none;
+    color: var(--color-font-light);
+    text-transform: uppercase;
+    transition: color 150ms ease, background-color 150ms ease;
+    height: 100%;
+    align-items: center;
+}
+li svg{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+li.aktiv a{
+    font-weight: bold;
+    color: var(--color-accent);
+}
+header nav ul li a:hover{
+    background-color: var(--color-accent);
+    color: white;
+}
+
+
+
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.velkommen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    margin: 20px 0;
+    color: var(--color-font-dark);
+}
+
+.velkommen > h2{
+    margin-bottom: 20px;
+    font-size: var(--fontsize-overskrift);
+}
+.velkommen > p{
+    font-size: var(--fontsize-tekst);
+}
+
+.innhold{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    margin: 20px 0;
+    color: var(--color-font-dark);
+}
+.innhold__tekst > h3{
+    margin-bottom: 20px;
+    font-size: var(--fontsize-medium);
+}
+.innhold__tekst > p{
+    font-size: var(--fontsize-tekst);
+}
+
+.layout{
+    width: 100%;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+/* CHILD AV LAYOUT */
+.layout__form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    width: 50%;
+    padding: 20px 25px;
+    color: var(--color-font-light);
+    border-radius: 1rem;
+    background-color: var(--color-form);
+}
+
+.layout__formHeader{
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.layout__formFooter{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 2rem;
+    width: 100%;
+    font-size: var(--fontsize-tekst);
+}
+.layout__formFooter.logreg{
+    margin-top: 0;
+}
+
+.layout__formFooter a{
+    color: var(--color-accent);
+}
+.form{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form__group{
+    margin-bottom: 2rem;
+    width: 100%;
+}
+.form__group span{
+    display: block;
+    font-size: var(--fontsize-tekst);
+    color: red;
+}
+.form__group label{
+    display: block;
+    font-size: var(--fontsize-tekst);
+    font-weight:500;
+    margin-bottom: 0.5rem;
+}
+
+.form__group input{
+    background: transparent;
+    border: 1px solid var(--color-font-light);
+    padding: 1rem;
+    border-radius: 5px;
+    width: 100%;
+    color: var(--color-font-light);
+}
+.knapp{
+    width: 150px;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: row;
+}
+.btn__form{
+    width: 100%;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    background-color: var(--color-accent);
+    color: var(--color-font-light);
+    font-size: var(--fontsize-tekst);
+    border: none;
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.15);
+
+    transition: background-color 150ms ease, color 150ms ease, outline 150ms ease;
+}
+.btn__form:hover{
+    background-color: transparent;
+    color: var(--color-accent);
+    outline: 1px solid var(--color-accent);
+}
+
+/*Logg ut knapp*/
+a.btn__form{
+    display: inline-block;
+    color: var(--color-font-light);
+    text-align: center;
+    text-decoration: none;
+}
+/*_______/BILREGISTER.PHP\_______*/
+
+.layout__form.bilregister{
+    width: 40%; /* fra 50% til 40% */
+}
+
+
+
+/*_______/SØK FORMEN I BILREGISTER.PHP\_______*/
+.form.bilregister{
+    flex-direction: row;
+    justify-content: space-between;
+}
+.form__group.bilregister{
+    margin-bottom: 0;
+    width: 100%;
+}
+.form__group.bilregister input{
+    width: 85%;
+    font-size: 13px;
+    margin: -0.667px;
+}
+.btn__form.bilregister{
+    font-size: 13px;
+}
+.knapp.bilregister{
+    width: 200px;
+}
+
+/*_______/GRID STYLING BILREGISTER.PHP\_______*/
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 kolonner */
+    grid-template-rows: repeat(6, auto);
+    gap: 0.5rem;
+    width: 100%;
+}
+.grid-item{
+    font-size: var(--fontsize-tekst);
+    padding: 0.8rem;
+    padding-bottom: 0.5rem;
+}
+.grid-item:nth-child(odd){
+    border-bottom: 1px solid var(--color-font-light);
+}
+.grid-item:nth-child(even){
+    border-bottom: 1px solid var(--color-accent);
+}
+
+.grid-container.profil{
+    grid-template-rows: repeat(3, auto);
+}
+
+
+/*_______/PROFIL.PHP\_______*/
+
+/* profil-info */
+.profil-boks, .biler-boks{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    width: 40%;
+    padding: 20px 25px;
+    color: var(--color-font-light);
+    border-radius: 1rem;
+    background-color: var(--color-form);
+    transition: width 0.3s ease-in, transform 0.3s ease-in-out;
+}
+
+.layout.single .profil-boks {
+    width: 55%; 
+}
+.layout.double .profil-boks {
+    width: 30%;
+}
+.layout.double .biler-boks {
+    width: 60%;
+}
+
+/* biler-boksen er skjult fra før */
+.biler-boks{
+    display: none;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.3s ease, transform 0.3s ease-in-out;
+}
+
+
+
+/* GRID STYLING */
+.grid-container-profilbiler{
+    display: flex;
+    flex-direction: column;
+    justify-content: first baseline;
+    gap: 0.5rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-font-light);
+    overflow: hidden;
+}
+.grid-row{
+    display: grid;
+    grid-template-columns: repeat(6, minmax(60px, 1fr));
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--color-font-light);
+}
+.grid-row.header{
+    background-color: var(--color-edit);
+    justify-items: first baseline;
+}
+.grid-item-profilbiler, .grid-item-header{
+    font-size: var(--fontsize-tekst);
+    padding: 0.5rem;
+    text-align: left;
+}
+.grid-item-header{
+    padding-top: 0.8rem;
+    font-weight: bold;
+}
+.grid-item-header > svg{
+    fill: var(--color-font-light);
+}
+/* TOGGLE KNAPP */
+.togglebiler{
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    border-radius: 5px;
+    margin-left: auto;
+    cursor: pointer;
+    transition: color 150ms ease;
+    font-weight: bold;
+}
+.togglebiler:hover{
+    color: var(--color-edit);
+}
+.togglebiler > svg{
+    width: 20px;
+    height: 20px;
+    fill: var(--color-edit);
+    margin-left: 0.5rem;
+    
+}
+.rotate{
+    transition: transform 0.3s ease;
+}
+.rotated{
+    transform: rotate(180deg);
+}
