@@ -8,12 +8,7 @@ if (!isset($_SESSION['innlogget']) || $_SESSION['innlogget'] !== true) {
 
 include 'db_connection.php';
 
-unset($_SESSION['registreringsnummer']);
-unset($_SESSION['merke']);
-unset($_SESSION['modell']);
-unset($_SESSION['arsmodell']);
-unset($_SESSION['farge']);
-unset($_SESSION['eier_navn']);
+$registreringsnummer = $merke = $modell = $arsmodell = $farge = $eier_id = "";
 
 $regnr_err = ""; 
 $regnr = "";
@@ -33,13 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['regnr'])) {
     $bil = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($bil) {
-        foreach ($bil as $key => $value) {
-            $_SESSION[$key] = $value; // Lagrer bilens data i session-variabler
-        }
+        $registreringsnummer = $bil['registreringsnummer'];
+        $merke = $bil['merke'];
+        $modell = $bil['modell'];
+        $arsmodell = $bil['arsmodell'];
+        $farge = $bil['farge'];
+        $eier_navn = $bil['eier_navn']; // Fra JOIN med eier-tabellen
         $regnr_err = "";
     } else {
-        
-
         $regnr_err = "Fant ingen biler med reg-nummer: " . htmlspecialchars($regnr, ENT_QUOTES, 'UTF-8');
     }
 
@@ -69,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['regnr'])) {
                                 <button class="btn__form bilregister" type="submit">Søk</button>
                             </div>                            
                         </form>
-                        <?php if (isset($_SESSION['registreringsnummer'])): ?>
+                        <?php if (!empty($registreringsnummer)): ?>
                             <div class="layout__formFooter">
                                 <a href="<?= strtok($_SERVER["REQUEST_URI"], '?') ?>">Fjern søk</a>
                             </div>
@@ -81,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['regnr'])) {
                         <?php endif; ?>
                     </div>
                      
-                    <?php if (isset($_SESSION['registreringsnummer'])): ?>
+                    <?php if (!empty($registreringsnummer)): ?>
                         <div class="layout__form bilregister">
 
                             <div class="layout__formHeader">
@@ -92,22 +88,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['regnr'])) {
                             <div class="grid-container">
                                 <!-- Partall er resultat av søk -->
                                 <div class="grid-item"><p>Registreringsnummer:</p></div>
-                                <div class="grid-item"><p><?php echo $_SESSION['registreringsnummer'] ?? ''; ?></p></div>
+                                <div class="grid-item"><p><?php echo htmlspecialchars($registreringsnummer ?? '', ENT_QUOTES, 'UTF-8'); ?></p></div>
 
                                 <div class="grid-item"><p>Merke:</p></div>
-                                <div class="grid-item"><p><?php echo $_SESSION['merke'] ?? ''; ?></p></div>
+                                <div class="grid-item"><p><?php echo htmlspecialchars($merke ?? '', ENT_QUOTES, 'UTF-8'); ?></p></div>
 
                                 <div class="grid-item"><p>Modell:</p></div>
-                                <div class="grid-item"><p><?php echo $_SESSION['modell'] ?? ''; ?></p></div>
+                                <div class="grid-item"><p><?php echo htmlspecialchars($modell ?? '', ENT_QUOTES, 'UTF-8'); ?></p></div>
 
                                 <div class="grid-item"><p>Årsmodell:</p></div>
-                                <div class="grid-item"><p><?php echo $_SESSION['arsmodell'] ?? ''; ?></p></div>
+                                <div class="grid-item"><p><?php echo htmlspecialchars($arsmodell ?? '', ENT_QUOTES, 'UTF-8'); ?></p></div>
 
                                 <div class="grid-item"><p>Farge:</p></div>
-                                <div class="grid-item"><p><?php echo $_SESSION['farge'] ?? ''; ?></p></div>
+                                <div class="grid-item"><p><?php echo htmlspecialchars($farge ?? '', ENT_QUOTES, 'UTF-8'); ?></p></div>
 
                                 <div class="grid-item"><p>Eier:</p></div>
-                                <div class="grid-item"><p><?php echo $_SESSION['eier_navn'] ?? ''; ?></p></div>
+                                <div class="grid-item"><p><?php echo htmlspecialchars($eier_navn ?? '', ENT_QUOTES, 'UTF-8'); ?></p></div>
                             </div>                  
                         </div>   
                     <?php endif; ?>

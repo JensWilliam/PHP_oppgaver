@@ -12,7 +12,7 @@ include 'db_connection.php';
 // Henter brukerens data fra databasen, og henter fullt navn
 $sql = "SELECT brukere.brukernavn, brukere.eier_id, eier.navn AS bruker_navn , eier.epost AS eier_epost
         FROM brukere 
-        JOIN eier ON brukere.eier_id = eier.id 
+        JOIN eier ON brukere.eier_id = eier.id
         WHERE brukere.brukernavn = ?
         ";
 

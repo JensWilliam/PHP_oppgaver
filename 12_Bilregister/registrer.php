@@ -26,6 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $passord = $_POST['passord'];
     $passord2 = $_POST['passord2'];
 
+    // NYE FELT FOR EIER
+    $eier_navn = trim($_POST['eier_navn']);
+    $eier_epost = trim($_POST['eier_epost']);
+
     // Sjekk om brukernavnet er tomt
     if (empty($brukernavn)) {
         $brukernavn_err = "Brukernavn er påkrevd.";
@@ -56,20 +60,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         $hashed_passord = password_hash($passord, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO brukere (brukernavn, passord) VALUES (?, ?)";
-        $stmt = $conn->prepare($sql);
+        try {
+            // Start transaksjon
+            $conn->beginTransaction();
 
-        if ($stmt->execute([$brukernavn, $hashed_passord])) {
+            // 1. Legg til eier
+            $sql = "INSERT INTO eier (navn, epost) VALUES (?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$eier_navn, $eier_epost]);
+
+            // 2. Hent eier_id
+            $eier_id = $conn->lastInsertId();
+
+            // 3. Legg til bruker med eier_id
+            $sql = "INSERT INTO brukere (brukernavn, passord, eier_id) VALUES (?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$brukernavn, $hashed_passord, $eier_id]);
+
+            // Fullfør transaksjonen
+            $conn->commit();
+
             $_SESSION['innlogget'] = true;
             $_SESSION['brukernavn'] = $brukernavn;
+            $_SESSION['status'] = 0;
 
             // Forny CSRF-token ved vellykket innlogging
             $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
             header("Location: index.php");
             exit();
-        } else {
-            echo "Noe gikk galt. Prøv igjen senere.";
+        } catch (Exception $e) {
+            $conn->rollBack();
+            echo "Noe gikk galt: " . $e->getMessage();
         }
     }
 }
@@ -91,6 +113,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label for="brukernavn">Brukernavn:</label>
                         <input type="text" name="brukernavn" id="brukernavn" placeholder="e.g. jens_ege" value="<?php echo $brukernavn; ?>" required>
                         <span><?php echo $brukernavn_err; ?></span>
+                    </div>
+                    <div class="form__group">
+                        <label for="eier_navn">Fullt navn:</label>
+                        <input type="text" name="eier_navn" id="eier_navn" placeholder="e.g. Ola Normann" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="eier_epost">Brukernavn:</label>
+                        <input type="email" name="eier_epost" id="eier_epost" placeholder="e.g. olanormann@mail.no" required>
                     </div>
                     <div class="form__group">
                         <label for="passord">Passord:</label>

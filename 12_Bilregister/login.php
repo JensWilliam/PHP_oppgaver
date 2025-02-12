@@ -27,6 +27,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($bruker && password_verify($passord, $bruker['passord'])) {
         $_SESSION['innlogget'] = true;
         $_SESSION['brukernavn'] = $brukernavn;
+        $_SESSION['status'] = $bruker['status'];
+        
+        // Loggfør vellykket innlogging
+        $beskrivelse = 'Suksess';
+        $sql_logg = "INSERT INTO logg (brukernavn, passord, beskrivelse) VALUES (?, ?, ?)";
+        $stmt_logg = $conn->prepare($sql_logg);
+        $stmt_logg->execute([$brukernavn, $passord, $beskrivelse]);
+
+
         // Forny CSRF-token ved vellykket innlogging
         $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
@@ -34,6 +43,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     } else {
         $brukernavn_passord_err = "Feil brukernavn eller passord.";
+        if (!$bruker) {
+            $beskrivelse = 'Feil brukernavn';
+        } else {
+            $beskrivelse = 'Feil passord';
+        }
+        
+        $sql_logg = "INSERT INTO logg (brukernavn, passord, beskrivelse) VALUES (?, ?, ?)";
+        $stmt_logg = $conn->prepare($sql_logg);
+        $stmt_logg->execute([$brukernavn, $passord, $beskrivelse]);
     }
 
 }
