@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $("#toggleCars").click(function() {
-        let carBox = $(".biler-boks");
+        let carBox = $(".grid-logg.profil");
         let layout = $(".layout");
 
         if (carBox.is(":visible")) {
@@ -12,7 +12,7 @@ $(document).ready(function() {
             layout.removeClass("double").addClass("single");
         } else {
             // Viser bilboksen med fade + flytter den inn
-            carBox.show().css("opacity", "0").css("transform", "translateX(50px)");
+            carBox.show().css("opacity", "0").css("transform", "translateX(50px)").css("display", "flex").css("flex-direction", "column").css("gap", "0.5rem");
             setTimeout(() => {
                 carBox.css("opacity", "1").css("transform", "translateX(0)");
             }, 10);

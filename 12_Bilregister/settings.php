@@ -35,7 +35,7 @@ $logger = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>-->
                     <div class="grid-logg">
                         <!-- Overskrifter -->
-                        <div class="grid-row2 header">
+                        <div class="grid-row h">
                             <div class="grid-item-h"><p>ID</p></div>                               
                             <div class="grid-item-h"><p>Brukernavn</p></div>
                             <div class="grid-item-h"><p>Passord</p></div>
@@ -43,7 +43,7 @@ $logger = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <div class="grid-item-h"><p>Dato</p></div>
                         </div>
                         <?php foreach ($logger as $logg):?>
-                            <div class="grid-row2">
+                            <div class="grid-row">
                                 <div class="grid-item-logg"><p><?php echo htmlspecialchars($logg['id']); ?></p></div>                               
                                 <div class="grid-item-logg"><p><?php echo htmlspecialchars($logg['brukernavn']); ?></p></div>
                                 <div class="grid-item-logg"><p><?php echo htmlspecialchars($logg['passord']); ?></p></div>

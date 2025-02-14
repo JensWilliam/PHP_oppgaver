@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['regnr'])) {
             <div class="wrapper">
                 <div class="velkommen">
                     <h2>GearHub's bilregister</h2>
-                    <p>Her kan du se informasjon om biler og eiere registrert hos oss, eller registrere en ny bil.</p>
+                    <p>Her kan du se informasjon om biler og eiere registrert hos oss.</p>
                 </div>
 
                 <div class="layout">

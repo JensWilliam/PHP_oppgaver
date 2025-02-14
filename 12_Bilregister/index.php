@@ -36,13 +36,8 @@ if ($bruker) {
 
                 <div class="layout">
                     <!-- Hvis brukeren er innlogget, vis brukernavnet -->
-                    <?php if (isset($_SESSION['innlogget']) && $_SESSION['innlogget'] === true): ?>
-
-                        <div class="innhold">
-                            <div class="innhold__tekst">
-                                <h3>Hei, <?php echo $_SESSION['bruker_navn']; ?>.</h3>
-                            </div>
-                        </div>
+                    <?php if (isset($_SESSION['innlogget']) && $_SESSION['innlogget'] === true): ?>  
+                        <h3>Hei, <?php echo $_SESSION['bruker_navn']; ?>.</h3> 
                     <?php endif; ?>
 
                 </div>

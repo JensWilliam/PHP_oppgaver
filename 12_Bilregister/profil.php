@@ -64,47 +64,45 @@ $biler = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                    <div class="biler-boks">
-                        <div class="layout__formHeader">
-                            <h3>Dine biler</h3>
+                    
+                        
+
+                    <div class="grid-logg profil">
+                        <!-- Overskrifter -->
+                        <div class="grid-row profil h">
+                            <div class="grid-item-h"><p>Reg-nr:</p></div>                               
+                            <div class="grid-item-h"><p>Merke:</p></div>
+                            <div class="grid-item-h"><p>Modell:</p></div>
+                            <div class="grid-item-h"><p>Årsmodell:</p></div>
+                            <div class="grid-item-h"><p>Farge:</p></div>
+                            <div class="grid-item-h"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="25px" width="25px" fill="currentColor"> <path d="M 18 2 L 15.585938 4.4140625 L 19.585938 8.4140625 L 22 6 L 18 2 z M 14.076172 5.9238281 L 3 17 L 3 21 L 7 21 L 18.076172 9.9238281 L 14.076172 5.9238281 z"/></svg></div>
                         </div>
 
-                        <div class="grid-container-profilbiler">
-                            <!-- Overskrifter -->
-                            <div class="grid-row header">
-                                <div class="grid-item-header"><p>Reg-nr:</p></div>                               
-                                <div class="grid-item-header"><p>Merke:</p></div>
-                                <div class="grid-item-header"><p>Modell:</p></div>
-                                <div class="grid-item-header"><p>Årsmodell:</p></div>
-                                <div class="grid-item-header"><p>Farge:</p></div>
-                                <div class="grid-item-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25px" fill="currentColor"> <path d="M 18 2 L 15.585938 4.4140625 L 19.585938 8.4140625 L 22 6 L 18 2 z M 14.076172 5.9238281 L 3 17 L 3 21 L 7 21 L 18.076172 9.9238281 L 14.076172 5.9238281 z"/></svg></div>
-                            </div>
+                        <?php if ($biler): ?>
+                            <?php $ingenbil_err = ""; ?> <!-- Hvis bruker har biler settes error melding til tom -->
 
-                            <?php if ($biler): ?>
-                                <?php $ingenbil_err = ""; ?> <!-- Hvis bruker har biler settes error melding til tom -->
+                            <?php foreach ($biler as $bil): ?>
+                                <div class="grid-row profil">
+                                    <div class="grid-item-logg"><p><?php echo htmlspecialchars($bil['registreringsnummer']); ?></p></div>
+                                    <div class="grid-item-logg"><p><?php echo htmlspecialchars($bil['merke']); ?></p></div>
+                                    <div class="grid-item-logg"><p><?php echo htmlspecialchars($bil['modell']); ?></p></div>
+                                    <div class="grid-item-logg"><p><?php echo htmlspecialchars($bil['arsmodell']); ?></p></div>
+                                    <div class="grid-item-logg"><p><?php echo htmlspecialchars($bil['farge']); ?></p></div>
+                                    <div class="grid-item-logg"><p><a>Slett</a></p></div>
+                                </div>
+                            <?php endforeach; ?>
 
-                                <?php foreach ($biler as $bil): ?>
-                                    <div class="grid-row">
-                                        <div class="grid-item-profilbiler"><p><?php echo htmlspecialchars($bil['registreringsnummer']); ?></p></div>
-                                        <div class="grid-item-profilbiler"><p><?php echo htmlspecialchars($bil['merke']); ?></p></div>
-                                        <div class="grid-item-profilbiler"><p><?php echo htmlspecialchars($bil['modell']); ?></p></div>
-                                        <div class="grid-item-profilbiler"><p><?php echo htmlspecialchars($bil['arsmodell']); ?></p></div>
-                                        <div class="grid-item-profilbiler"><p><?php echo htmlspecialchars($bil['farge']); ?></p></div>
-                                        <div class="grid-item-profilbiler"><p><a>Endre</a></p></div>
-                                    </div>
-                                <?php endforeach; ?>
+                        <?php else: ?>
+                            <?php $ingenbil_err = "Du har ingen biler registrert"; ?> <!-- Hvis bruker ikke har biler settes error melding -->
+                        <?php endif; ?>
 
-                            <?php else: ?>
-                                <?php $ingenbil_err = "Du har ingen biler registrert"; ?> <!-- Hvis bruker ikke har biler settes error melding -->
-                            <?php endif; ?>
-
-                        </div>
-
-                        <div class="layout__formFooter">
-                            <span><?php echo $ingenbil_err; ?></span>
-                            <p>Legg til en bil <a href="">her</a></p>
-                        </div>
                     </div>
+
+                    <!--<div class="layout__formFooter">
+                        <span><?php #echo $ingenbil_err; ?></span>
+                        <p>Legg til en bil <a href="">her</a></p>
+                    </div>-->
+                    
                 </div>
 
             </div>
