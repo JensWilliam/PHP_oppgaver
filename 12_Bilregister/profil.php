@@ -9,7 +9,7 @@ if (!isset($_SESSION['innlogget']) || $_SESSION['innlogget'] !== true) {
 include 'db_connection.php';
 
 // Henter bilene til den innloggede brukeren
-$sql = "SELECT * FROM bil WHERE eier_id = ?";
+$sql = "SELECT * FROM bil WHERE eier_id = ? ORDER BY id DESC";
 $stmt = $conn->prepare($sql);
 $stmt->execute([$_SESSION['eier_id']]);
 $biler = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -75,7 +75,7 @@ $biler = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <div class="grid-item-h"><p>Modell:</p></div>
                             <div class="grid-item-h"><p>Årsmodell:</p></div>
                             <div class="grid-item-h"><p>Farge:</p></div>
-                            <div class="grid-item-h"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="25px" width="25px" fill="currentColor"> <path d="M 18 2 L 15.585938 4.4140625 L 19.585938 8.4140625 L 22 6 L 18 2 z M 14.076172 5.9238281 L 3 17 L 3 21 L 7 21 L 18.076172 9.9238281 L 14.076172 5.9238281 z"/></svg></div>
+                            <div class="grid-item-h"><p>Endre / Slett:</p><!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="25px" width="25px" fill="currentColor"> <path d="M 18 2 L 15.585938 4.4140625 L 19.585938 8.4140625 L 22 6 L 18 2 z M 14.076172 5.9238281 L 3 17 L 3 21 L 7 21 L 18.076172 9.9238281 L 14.076172 5.9238281 z"/></svg>--></div>
                         </div>
 
                         <?php if ($biler): ?>
@@ -88,7 +88,8 @@ $biler = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="grid-item-logg"><p><?php echo htmlspecialchars($bil['modell']); ?></p></div>
                                     <div class="grid-item-logg"><p><?php echo htmlspecialchars($bil['arsmodell']); ?></p></div>
                                     <div class="grid-item-logg"><p><?php echo htmlspecialchars($bil['farge']); ?></p></div>
-                                    <div class="grid-item-logg"><p><a>Slett</a></p></div>
+                                    <div class="grid-item-logg"><p><a href="confirm_update.php?id=<?php echo urlencode($bil['id']); ?>"><svg class="svg_endre" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="25px" width="25px" fill="currentColor"> <path d="M 18 2 L 15.585938 4.4140625 L 19.585938 8.4140625 L 22 6 L 18 2 z M 14.076172 5.9238281 L 3 17 L 3 21 L 7 21 L 18.076172 9.9238281 L 14.076172 5.9238281 z"/></svg></a><a href="confirm_delete.php?id=<?php echo urlencode($bil['id']); ?>"><svg class="svg_slett" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="25px" height="25px" fill="currentColor"><path d="M 10 2 L 9 3 L 4 3 L 4 5 L 5 5 L 5 20 C 5 20.522222 5.1913289 21.05461 5.5683594 21.431641 C 5.9453899 21.808671 6.4777778 22 7 22 L 17 22 C 17.522222 22 18.05461 21.808671 18.431641 21.431641 C 18.808671 21.05461 19 20.522222 19 20 L 19 5 L 20 5 L 20 3 L 15 3 L 14 2 L 10 2 z M 7 5 L 17 5 L 17 20 L 7 20 L 7 5 z M 9 7 L 9 18 L 11 18 L 11 7 L 9 7 z M 13 7 L 13 18 L 15 18 L 15 7 L 13 7 z"/></svg></a></p>
+                                    </div>
                                 </div>
                             <?php endforeach; ?>
 

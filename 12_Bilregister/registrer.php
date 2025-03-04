@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="text" name="eier_navn" id="eier_navn" placeholder="e.g. Ola Normann" required>
                     </div>
                     <div class="form__group">
-                        <label for="eier_epost">Brukernavn:</label>
+                        <label for="eier_epost">E-post:</label>
                         <input type="email" name="eier_epost" id="eier_epost" placeholder="e.g. olanormann@mail.no" required>
                     </div>
                     <div class="form__group">

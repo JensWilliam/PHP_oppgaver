@@ -1,0 +1,167 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+:root{
+    --font-size-overskrift: 3rem;
+    --font-size-medium: 2rem;
+    --font-size-tekst: 1rem;
+
+    --color-main: #434151;
+    --color-accent: #8685ef;
+    --color-contrast: #2d2d2d;
+    --color-tekst: #faf8ff;
+}
+html{
+    min-height: 100vh;
+    min-height: 100dvh;
+    color: var(--color-tekst);
+}
+body{
+    height: 100%;
+    background-color: var(--color-main);
+}
+/* HEADER */
+nav{
+    width: 100%;
+    background-color: var(--color-main);
+    border-bottom: 1px solid var(--color-contrast);
+}
+
+nav ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0.5rem 5rem;
+}
+nav ul li{
+    display: block;
+}
+
+nav ul li.logo img{
+    width: 100px;
+    height: auto;
+}
+
+/* INNHOLD */
+main{
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding: 1rem 2rem;
+}
+
+.kol1{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 60%;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-contrast);
+    overflow: hidden;
+}
+.grid-row{
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 3fr 2fr 2fr;
+    border-bottom: 1px solid var(--color-contrast);
+    place-items: center;
+}
+.grid-row.header{
+    background-color: var(--color-accent);
+}
+.gridchild{
+    padding: 0.5rem;
+}
+.gridchild.h{
+    font-weight: bold;
+}
+
+
+.kol2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-contrast);
+    background-color: var(--color-main);
+    padding: 1rem 2rem;
+}
+.kol2 h1{
+    font-size: var(--font-size-medium);
+    margin-bottom: 1rem;
+}
+.kol2 p{
+    font-size: var(--font-size-tekst);
+    margin-bottom: 1rem;
+}
+.knapp-parent{
+    display: flex;
+    width: 50%;
+}
+.knapp{
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-accent);
+    color: var(--color-tekst);
+    font-size: var(--font-size-tekst);
+    border: none;
+    box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.2);
+}
+.knapp-parent.reg{
+    align-self: flex-end;
+    width: 30%;
+}
+/* REGISTRER */
+
+.skjema{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-contrast);
+}
+.skjema-header{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    width: 100%;
+}
+.form-group{
+    width: 100%;
+}
+.form-group label{
+    display: block;
+    font-size: var(--font-size-tekst);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+.form-group input, .form-group select{
+    background: transparent;
+    border: 1px solid var(--color-contrast);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    color: var(--color-tekst);
+}
+.form-group select option{
+    background-color: var(--color-main);
+}
+

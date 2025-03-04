@@ -22,7 +22,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <body>
     <header>
         <a href="index.php" class="minlogo">
-            <img src="bilder/NORGES STØRTE BILREGISTER.png" alt="Bilregister logo">
+            <img src="bilder/freepik_merce.png" alt="Bilregister logo">
         </a>
         <nav>
             <ul>

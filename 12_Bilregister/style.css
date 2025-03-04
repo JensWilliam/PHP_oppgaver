@@ -8,6 +8,7 @@
 :root {
     --fontsize-overskrift: 3rem;
     --fontsize-medium: 2rem;
+    --font-size-small: 1.5rem;
     --fontsize-tekst: 1rem;
 
     --color-font-light: #ECECEC;
@@ -19,12 +20,13 @@
     --color-header: #2C2C54;
     --color-accent: #474787;
     --color-accent2: #8585f0;
-    --color-accent3: #ee6364;
+    --color-accent3: #009063;
+
+    --color-edit: rgb(0, 205, 10);
+    
 
     --color-form: #2C2C54;
     --color-button: #b12a36;
-
-    --color-edit: #ee6364;
 }
 
 ::selection {
@@ -47,11 +49,13 @@ header{
 .minlogo{
     display: flex;
     align-items: center;
-    padding: 0 3%;
-    width: 200px;
+    padding: 5px;
+    width: clamp(100px, 15%, 180px);
+    margin-left: 5vw;
 }
 .minlogo img{
     max-width: 100%;
+    height: auto;
     height: auto;
     cursor: pointer;
 }
@@ -60,6 +64,7 @@ nav ul{
     display: flex;
     list-style: none;
     height: 100%;
+    margin-right: 5vw;
 }
 
 nav li a{
@@ -71,6 +76,7 @@ nav li a{
     transition: color 150ms ease, background-color 150ms ease;
     height: 100%;
     align-items: center;
+    font-size: var(--fontsize-tekst);
 }
 li svg{
     width: 35px;
@@ -141,8 +147,12 @@ nav li a:hover{
 
 .layout__formHeader{
     text-align: center;
-    font-size: 1.5rem;
+    font-size: var(--font-size-small);
     margin-bottom: 20px;
+}
+.layout__formHeader p{
+    margin-top: 10px;
+    font-size: var(--fontsize-small);
 }
 
 .layout__formFooter{
@@ -224,6 +234,8 @@ a.btn__form{
 }
 
 
+
+
 /*_______/BILREGISTER.PHP\_______*/
 .form.bilregister{
     flex-direction: row;
@@ -301,18 +313,14 @@ a.btn__form{
 
 /*_______/SETTINGS.PHP\_______*/
 
-.profil-boks.oversikt{
-    background-color: red;
-    color: var(--color-font-dark);
-    width: 40%;
-}
+
 
 /*brukes av settings og profil*/
 .grid-logg{
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    width: 60%;
+    width: 40%;
     border-radius: 0.5rem;
     border: 1px solid var(--color-header);
     overflow: hidden;
@@ -326,8 +334,12 @@ a.btn__form{
     font-size: var(--fontsize-tekst);
 }
 
+.grid-row.brukere{
+    grid-template-columns: 1fr 3fr 3fr 3fr 2fr;
+}
+
 .grid-row.h{
-    background-color: var(--color-edit);
+    background-color: var(--color-accent2);
 }
 
 .grid-item-h{
@@ -336,6 +348,19 @@ a.btn__form{
 }
 .grid-item-logg{
     padding-bottom: 0.5rem;
+}
+.grid-item-logg a{
+    margin-left: 1rem;
+}
+.svg_endre, .svg_slett{
+    fill: var(--color-font-dark);
+    transition: fill 150ms ease;
+}
+.svg_endre:hover{
+    fill: var(--color-edit);
+}
+.svg_slett:hover{
+    fill: red;
 }
 
 
@@ -375,4 +400,35 @@ a.btn__form{
     opacity: 0;
     transform: translateX(50px);
     transition: opacity 0.3s ease, transform 0.3s ease-in-out;
+}
+
+.profil-boks.oversikt{
+    width: 30%;
+    
+}
+
+/* UPDATE.PHP */
+
+.form__group.update input{
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 960px){
+    :root{
+        --fontsize-overskrift: 2.7rem;
+        --fontsize-medium: 1.7rem;
+        --font-size-small: 1.2rem;
+        --fontsize-tekst: 0.8rem;
+    }
+}
+
+@media (max-width: 800px){
+    :root{
+        --fontsize-overskrift: 2.5rem;
+        --fontsize-medium: 1.5rem;
+        --font-size-small: 1rem;
+        --fontsize-tekst: 0.7rem;
+    }
+    
+
 }
