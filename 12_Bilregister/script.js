@@ -12,7 +12,7 @@ $(document).ready(function() {
             layout.removeClass("double").addClass("single");
         } else {
             // Viser bilboksen med fade + flytter den inn
-            carBox.show().css("opacity", "0").css("transform", "translateX(50px)").css("display", "flex").css("flex-direction", "column").css("gap", "0.5rem");
+            carBox.show().css("opacity", "0").css("transform", "translateX(50px)").css("display", "flex").css("flex-direction", "column");
             setTimeout(() => {
                 carBox.css("opacity", "1").css("transform", "translateX(0)");
             }, 10);

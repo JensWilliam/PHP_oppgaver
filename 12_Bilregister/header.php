@@ -27,9 +27,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <nav>
             <ul>
                 <li class="<?php echo ($currentPage == 'index.php') ? 'aktiv' : ''; ?>"><a href="index.php">Hjem</a></li>
-                <li class="<?php echo ($currentPage == 'bilregister.php') ? 'aktiv' : ''; ?>"><a href="bilregister.php">Bilregister</a></li>
-                <li class="<?php echo ($currentPage == 'liste.php') ? 'aktiv' : ''; ?>"><a href="liste.php">Liste</a></li>
-                <li class="<?php echo ($currentPage == 'sok.php') ? 'aktiv' : ''; ?>"><a href="sok.php">Søk</a></li>
+                <li class="<?php echo ($currentPage == 'ny_bil.php') ? 'aktiv' : ''; ?>"><a href="ny_bil.php">Registrer en bil</a></li>
 
                 <!-- Vis profilknapp hvis brukeren er logget inn -->
                 <?php if (isset($_SESSION['innlogget']) && $_SESSION['innlogget'] === true): ?>

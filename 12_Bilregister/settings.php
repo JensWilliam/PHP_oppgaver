@@ -29,7 +29,7 @@ $eiere = $stmt2->fetchAll(PDO::FETCH_ASSOC);
         <main>
             <div class="wrapper">
                 <div class="velkommen">
-                    <h2>Innstillinger</h2>
+                    <h2>Administrator side</h2>
                     <p>Eiere og innloggings-logg</p>
                     
                 </div>
@@ -40,16 +40,16 @@ $eiere = $stmt2->fetchAll(PDO::FETCH_ASSOC);
                             <div class="grid-item-h"><p>ID</p></div>
                             <div class="grid-item-h"><p>Fullt navn</p></div>
                             <div class="grid-item-h"><p>E-post</p></div>
-                            <div class="grid-item-h"><p>Brukernavn</p></div>
                             <div class="grid-item-h"><p>Status</p></div>
+                            <div class="grid-item-h"><p>Brukernavn</p></div>
                         </div>
                         <?php foreach ($eiere as $eier): ?>
                             <div class="grid-row brukere">
                                 <div class="grid-item-logg"><p><?php echo htmlspecialchars($eier['id']); ?></p></div>
                                 <div class="grid-item-logg"><p><?php echo htmlspecialchars($eier['navn']); ?></p></div>
                                 <div class="grid-item-logg"><p><?php echo htmlspecialchars($eier['epost']); ?></p></div>
-                                <div class="grid-item-logg"><p><?php echo htmlspecialchars($eier['brukernavn']); ?></p></div>
                                 <div class="grid-item-logg"><p><?php echo htmlspecialchars($eier['status']); ?></p></div>
+                                <div class="grid-item-logg"><p><?php echo htmlspecialchars($eier['brukernavn']); ?></p></div>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -58,7 +58,7 @@ $eiere = $stmt2->fetchAll(PDO::FETCH_ASSOC);
                         <div class="grid-row h">
                             <div class="grid-item-h"><p>ID</p></div>                               
                             <div class="grid-item-h"><p>Brukernavn</p></div>
-                            <div class="grid-item-h"><p>Passord</p></div>
+                            <div class="grid-item-h"><p>Handling</p></div>
                             <div class="grid-item-h"><p>Beskrivelse</p></div>
                             <div class="grid-item-h"><p>Dato</p></div>
                         </div>
@@ -66,7 +66,7 @@ $eiere = $stmt2->fetchAll(PDO::FETCH_ASSOC);
                             <div class="grid-row">
                                 <div class="grid-item-logg"><p><?php echo htmlspecialchars($logg['id']); ?></p></div>                               
                                 <div class="grid-item-logg"><p><?php echo htmlspecialchars($logg['brukernavn']); ?></p></div>
-                                <div class="grid-item-logg"><p><?php echo htmlspecialchars($logg['passord']); ?></p></div>
+                                <div class="grid-item-logg"><p><?php echo htmlspecialchars($logg['handling']); ?></p></div>
                                 <div class="grid-item-logg"><p><?php echo htmlspecialchars($logg['beskrivelse']); ?></p></div>
                                 <div class="grid-item-logg"><p><?php echo htmlspecialchars($logg['tid']); ?></p></div>
                             </div>

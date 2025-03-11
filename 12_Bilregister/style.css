@@ -12,25 +12,25 @@
     --fontsize-tekst: 1rem;
 
     --color-font-light: #ECECEC;
-    --color-font-dark: #000000;
+    --color-font-dark: #262626;
 
 
     --color-body: #ECECEC;
 
-    --color-header: #2C2C54;
-    --color-accent: #474787;
-    --color-accent2: #8585f0;
-    --color-accent3: #009063;
+    --color-header: #004AAD;
+    --color-accent2: #2686ff;
 
+    --color-row: #D9E2EC;
+    --color-rowh: #004AAD;
+
+    --color-edit2: #00c895;
     --color-edit: rgb(0, 205, 10);
     
-
-    --color-form: #2C2C54;
-    --color-button: #b12a36;
+    --color-button: #FF6B35;
 }
 
 ::selection {
-    background-color: var(--color-accent);
+    background-color: var(--color-accent2);
     color: var(--color-font-light);
 }
 
@@ -89,7 +89,7 @@ li.aktiv a{
     box-shadow: inset 0px -4px 0px var(--color-accent2);
 }
 nav li a:hover{
-    background-color: var(--color-accent);
+    background-color: var(--color-accent2);
 }
 
 
@@ -106,7 +106,7 @@ nav li a:hover{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 80%;
+    width: 50%;
     margin: 20px 0;
     color: var(--color-font-dark);
 }
@@ -127,6 +127,10 @@ nav li a:hover{
     justify-content: space-evenly;
     align-items: flex-start;
 }
+.layout.hjem{
+    flex-direction: column;
+    align-items: center;
+}
 
 /* FORM-STYLING brukes av registrer, login & bilregister.php */
 .layout__form{
@@ -139,10 +143,11 @@ nav li a:hover{
     padding: 20px 25px;
     color: var(--color-font-light);
     border-radius: 1rem;
-    background-color: var(--color-form);
+    background-color: var(--color-header);
 }
 .layout__form.bilregister{
-    width: 40%;
+    width: 30%;
+    background-color: var(--color-rowh);
 }
 
 .layout__formHeader{
@@ -165,8 +170,16 @@ nav li a:hover{
 .layout__formFooter.logreg{
     margin-top: 0;
 }
+.layout__formFooter.hjem{
+    margin-top: 0.5rem;
+    width: 100%;
+    justify-content: space-between;
+    align-self: flex-start;
+}
+
+
 .layout__formFooter a{
-    color: var(--color-accent3);
+    color: var(--color-edit2);
 }
 
 /*selve formen*/
@@ -319,13 +332,16 @@ a.btn__form{
 .grid-logg{
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
     width: 40%;
     border-radius: 0.5rem;
     border: 1px solid var(--color-header);
     overflow: hidden;
+    max-height: 400px;
+    overflow-y: auto;
 }
-
+.grid-logg.biler{
+    width: 60%;
+}
 .grid-row{
     display: grid;
     grid-template-columns: 1fr 3fr 3fr 5fr 3fr;
@@ -334,12 +350,21 @@ a.btn__form{
     font-size: var(--fontsize-tekst);
 }
 
-.grid-row.brukere{
-    grid-template-columns: 1fr 3fr 3fr 3fr 2fr;
+.grid-row.biler{
+    grid-template-columns: 1fr 2fr 2fr 2fr 1fr 3fr ;
 }
 
+.grid-row.brukere{
+    grid-template-columns: 1fr 3fr 3fr 2fr 2fr;
+}
+.grid-row:nth-child(odd){
+    background-color: var(--color-row);
+}
 .grid-row.h{
-    background-color: var(--color-accent2);
+    background-color: var(--color-rowh);
+    color: var(--color-font-light);
+    position: sticky;
+    top: 0;
 }
 
 .grid-item-h{
@@ -347,8 +372,9 @@ a.btn__form{
     padding: 0.5rem;
 }
 .grid-item-logg{
-    padding-bottom: 0.5rem;
+    padding: 0.5rem;
 }
+
 .grid-item-logg a{
     margin-left: 1rem;
 }
@@ -376,7 +402,7 @@ a.btn__form{
     padding: 20px 25px;
     color: var(--color-font-light);
     border-radius: 1rem;
-    background-color: var(--color-form);
+    background-color: var(--color-header);
     transition: width 0.3s ease-in, transform 0.3s ease-in-out;
 }
 
@@ -412,6 +438,16 @@ a.btn__form{
 .form__group.update input{
     margin-bottom: 1rem;
 }
+
+
+.highlight {
+    background-color: yellow;
+}
+
+
+
+
+
 
 @media (max-width: 960px){
     :root{
