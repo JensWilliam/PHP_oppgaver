@@ -9,22 +9,7 @@ if (!isset($_SESSION['innlogget']) || $_SESSION['innlogget'] !== true) {
 
 include 'db_connection.php';
 
-// Henter brukernavn eier_id, navn og epost fra databasen
-$sql = "SELECT brukere.brukernavn, brukere.eier_id, eier.navn AS bruker_navn , eier.epost AS eier_epost
-        FROM brukere 
-        JOIN eier ON brukere.eier_id = eier.id
-        WHERE brukere.brukernavn = ?
-        ";
 
-$stmt = $conn->prepare($sql);
-$stmt->execute([$_SESSION['brukernavn']]);
-$bruker = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if ($bruker) {
-    foreach ($bruker as $key => $value) {
-        $_SESSION[$key] = $value; // Lagrer brukerens data i session-variabler
-    }
-}
 
 // Sjekk om det er et søk
 $sok = isset($_GET['sok']) ? trim($_GET['sok']) : '';
@@ -64,6 +49,7 @@ function highlightMatch($text, $search) {
     $escapedSearch = preg_quote($search, '/'); // Escape spesielle tegn
     return preg_replace("/($escapedSearch)/i", "<span class='highlight'>$1</span>", htmlspecialchars($text, ENT_QUOTES, 'UTF-8'));
 }
+
 ?>
 
         <main>

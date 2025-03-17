@@ -155,6 +155,7 @@ nav li a:hover{
     font-size: var(--font-size-small);
     margin-bottom: 20px;
 }
+
 .layout__formHeader p{
     margin-top: 10px;
     font-size: var(--fontsize-small);
@@ -346,8 +347,9 @@ a.btn__form{
     display: grid;
     grid-template-columns: 1fr 3fr 3fr 5fr 3fr;
     border-bottom: 1px solid var(--color-header);
-    place-items: center;
+    text-align: left;
     font-size: var(--fontsize-tekst);
+    align-items: center;
 }
 
 .grid-row.biler{
@@ -355,8 +357,9 @@ a.btn__form{
 }
 
 .grid-row.brukere{
-    grid-template-columns: 1fr 3fr 3fr 2fr 2fr;
+    grid-template-columns: 4fr 3fr 2fr 2fr 2fr;
 }
+
 .grid-row:nth-child(odd){
     background-color: var(--color-row);
 }
@@ -389,6 +392,25 @@ a.btn__form{
     fill: red;
 }
 
+.layout__formHeader.profil{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+}
+.svg_endre.profil, .svg_slett.profil{
+    fill: var(--color-font-light);
+}
+.svg_endre.profil{
+    margin-right: 1rem;
+}
+.svg_endre.profil:hover{
+    fill: var(--color-edit);
+}
+.svg_slett.profil:hover{
+    fill: red;
+}
 
 /*_______/PROFIL.PHP\_______*/
 

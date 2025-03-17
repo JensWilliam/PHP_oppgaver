@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $brukernavn = trim($_POST['brukernavn']);
     $passord = $_POST['passord'];
     $passord2 = $_POST['passord2'];
+    $handling = "Registrering"; // Til logging
 
     // NYE FELT FOR EIER
     $eier_navn = trim($_POST['eier_navn']);
@@ -60,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         $hashed_passord = password_hash($passord, PASSWORD_DEFAULT);
 
+
         try {
             // Start transaksjon
             $conn->beginTransaction();
@@ -80,9 +82,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Fullfør transaksjonen
             $conn->commit();
 
+            // hente bruker fra databasen
+            $sql = "SELECT * FROM brukere WHERE brukernavn = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$brukernavn]);
+            $bruker = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+
             $_SESSION['innlogget'] = true;
-            $_SESSION['brukernavn'] = $brukernavn;
-            $_SESSION['status'] = 0;
+            $_SESSION['brukernavn'] = $bruker['brukernavn'];
+            $_SESSION['status'] = $bruker['status'];
+
+            // Loggfør vellykket registrering
+            $beskrivelse = 'Suksess';
+            $sql_logg = "INSERT INTO logg (brukernavn, handling, beskrivelse) VALUES (?, ?, ?)";
+            $stmt_logg = $conn->prepare($sql_logg);
+            $stmt_logg->execute([$brukernavn, $handling, $beskrivelse]);
 
             // Forny CSRF-token ved vellykket innlogging
             $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -93,6 +108,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $conn->rollBack();
             echo "Noe gikk galt: " . $e->getMessage();
         }
+    } else {
+        // Loggfør feilregistrering
+        $beskrivelse = 'Feilregistrering';
+        $sql_logg = "INSERT INTO logg (brukernavn, handling, beskrivelse) VALUES (?, ?, ?)";
+        $stmt_logg = $conn->prepare($sql_logg);
+        $stmt_logg->execute([$brukernavn, $handling, $beskrivelse]);
     }
 }
 ?>

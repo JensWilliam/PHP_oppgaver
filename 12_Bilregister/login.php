@@ -27,8 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($bruker && password_verify($passord, $bruker['passord'])) {
         $_SESSION['innlogget'] = true;
-        $_SESSION['brukernavn'] = htmlspecialchars($brukernavn);
+        $_SESSION['brukernavn'] = $bruker['brukernavn'];
         $_SESSION['status'] = $bruker['status'];
+        $_SESSION['eier_id'] = $bruker['eier_id'];
         
         // Loggfør vellykket innlogging
         $beskrivelse = 'Suksess';
