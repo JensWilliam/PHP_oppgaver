@@ -92,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['innlogget'] = true;
             $_SESSION['brukernavn'] = $bruker['brukernavn'];
             $_SESSION['status'] = $bruker['status'];
+            $_SESSION['eier_id'] = $bruker['eier_id'];
 
             // Loggfør vellykket registrering
             $beskrivelse = 'Suksess';
